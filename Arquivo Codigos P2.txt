@@ -70,3 +70,8 @@
     <a th:href="@{/produtoCTR/}">Voltar à Listagem de Produtos</a>
 </body>
 </html>
+-------------------------------------------------------
+<dependency>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-security</artifactId>
+</dependency>
