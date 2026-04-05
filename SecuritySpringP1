@@ -1,0 +1,18 @@
+//classe CustomUserDetailService 
+
+public CustomUserDetailsService(UsuarioRepository oUsuarioRepository){
+        this.usuarioRepository = oUsuarioRepository;
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        
+        Usuario oUsuario = usuarioRepository.findByUsername(username)
+        .orElseThrow(() -> new UsernameNotFoundException("Usuario não encontrado!"));
+
+        return User.builder()
+        .username(oUsuario.getUsername())
+        .password(oUsuario.getPassword())
+        .roles(oUsuario.getRole().replace("ROLE_", ""))
+        .build();
+    }
