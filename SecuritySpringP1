@@ -1,6 +1,18 @@
-//classe CustomUserDetailService 
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 
-public CustomUserDetailsService(UsuarioRepository oUsuarioRepository){
+import com.revisaospring.springbasic.Entity.Usuario;
+import com.revisaospring.springbasic.Repository.UsuarioRepository;
+
+@Service
+public class CustomUserDetailsService implements UserDetailsService{
+
+    private final UsuarioRepository usuarioRepository;
+
+    public CustomUserDetailsService(UsuarioRepository oUsuarioRepository){
         this.usuarioRepository = oUsuarioRepository;
     }
 
@@ -16,6 +28,7 @@ public CustomUserDetailsService(UsuarioRepository oUsuarioRepository){
         .roles(oUsuario.getRole().replace("ROLE_", ""))
         .build();
     }
+}
 -----------------------------------------------------------
 cadastrar usuario
 <!DOCTYPE html>
